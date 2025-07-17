@@ -90,7 +90,7 @@ class DataManager private constructor(private val mAppContext: Context) {
      * Returns a map of supported language codes.
      */
     fun getLanguages() = listOf(
-        "en", "es", "fr", "de", "it"
+        "en", "es", "fr", "de", "it", "zh"
     )
 
     /********************************* ARMOR QUERIES  */
