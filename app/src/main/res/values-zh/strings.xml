@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">MHGU数据库</string>
+    <string name="app_name">MHGUDatabase</string>
     <string name="app_name_launcher">MHGUDB</string>
     <string name="search">搜索</string>
     <string name="search_hint">搜索数据库</string>
@@ -23,7 +23,6 @@
     <string name="placeholder_unknown">未知</string>
     <string name="filter_final_option">仅最终</string>
     <string name="empty_message">无数据</string>
-    <string name="list_empty_message">材料不足。</string>
 
     <string name="dialog_message_delete">\"%s\"将被删除。</string>
     <string name="dialog_message_delete_multi">这%d个项目将被删除。</string>
@@ -52,26 +51,26 @@
     <string name="type_armor">护甲</string>
     <string name="type_armor_set">护甲套装</string>
     <string name="type_armor_set_gunner">护甲套装（枪手）</string>
-    <string name="type_armor_set_blade">护甲套装（刀手）</string>
+    <string name="type_armor_set_blade">护甲套装（剑士）</string>
     <string name="type_decoration">装饰品</string>
     <string name="type_palico_weapon">猫猫武器</string>
     <string name="type_palico_armor">猫猫护甲</string>
     <string name="type_material">材料</string>
     <string name="type_hub_village">村庄</string>
-    <string name="type_hub_guild">公会</string>
+    <string name="type_hub_guild">集会所</string>
     <string name="type_hub_event">活动</string>
-    <string name="type_hub_arena">竞技场</string>
-    <string name="type_hub_permit">许可证</string>
+    <string name="type_hub_arena">斗技大会</string>
+    <string name="type_hub_permit">特殊许可证</string>
     <string name="type_weapon_greatsword">大剑</string>
     <string name="type_weapon_longsword">太刀</string>
-    <string name="type_weapon_swordandshield">剑盾</string>
+    <string name="type_weapon_swordandshield">单手剑</string>
     <string name="type_weapon_dualblades">双剑</string>
     <string name="type_weapon_hammer">大锤</string>
-    <string name="type_weapon_huntinghorn">猎虫笛</string>
+    <string name="type_weapon_huntinghorn">狩猎笛</string>
     <string name="type_weapon_lance">长枪</string>
     <string name="type_weapon_gunlance">铳枪</string>
     <string name="type_weapon_switchaxe">斩斧</string>
-    <string name="type_weapon_chargeblade">充能斧</string>
+    <string name="type_weapon_chargeblade">盾斧</string>
     <string name="type_weapon_insectglaive">操虫棍</string>
     <string name="type_weapon_lightbowgun">轻弩</string>
     <string name="type_weapon_heavybowgun">重弩</string>
@@ -89,9 +88,9 @@
     <string name="value_rare">稀有度 %s</string>
 
     <!-- Generic strings -->
-    <string name="rank_lr">初级</string>
-    <string name="rank_hr">高级</string>
-    <string name="rank_g">G级</string>
+    <string name="rank_lr">下位</string>
+    <string name="rank_hr">上位</string>
+    <string name="rank_g">G位</string>
     <string name="rank_any">任意</string>
 
     <!-- Ailments -->
@@ -167,7 +166,7 @@
     <string name="title_preferences">设置</string>
     <string name="monster_image">怪物图像</string>
     <string name="monster_damage">怪物伤害</string>
-    <string name="arena_quests">竞技场任务</string>
+    <string name="arena_quests">斗技大会</string>
     <string name="wishlist">心愿单</string>
 
     <string name="dialog_armor_filter_title">筛选</string>
@@ -206,17 +205,17 @@
     <string name="monster_class_deviant">异种</string>
 
     <string name="monster_detail_tab_summary">概述</string>
-    <string name="monster_detail_tab_damage">伤害</string>
+    <string name="monster_detail_tab_damage">肉质</string>
     <string name="monster_summary_weaknesses">弱点</string>
     <string name="monster_ailments">异常状态</string>
     <string name="monster_habitats">栖息地</string>
     <string name="monster_damage_area">部位</string>
     <string name="monster_status_icon">状态</string>
-    <string name="monster_status_initial">初始值</string>
-    <string name="monster_status_increase">增长值</string>
-    <string name="monster_status_max">最大值</string>
+    <string name="monster_status_initial">初始耐性</string>
+    <string name="monster_status_increase">耐性增量</string>
+    <string name="monster_status_max">最大耐性</string>
     <string name="monster_status_duration">持续时间</string>
-    <string name="monster_status_damage">伤害</string>
+    <string name="monster_status_damage">总伤害</string>
 
     <!-- Items -->
     <string name="item_detail_tab_detail">详细信息</string>
@@ -259,10 +258,10 @@
     <!-- Armor -->
     <string name="armor_part">部位</string>
     <string name="armor_type_both">任意</string>
-    <string name="armor_type_blade">刀手</string>
+    <string name="armor_type_blade">剑士</string>
     <string name="armor_type_gunner">枪手</string>
-    <string name="armor_type_blade_short">刀</string>
-    <string name="armor_type_gunner_short">枪</string>
+    <string name="armor_type_blade_short">剑士</string>
+    <string name="armor_type_gunner_short">枪手</string>
     <string name="armor_title_set">套装</string>
     <string name="armor_res_fire">火属性抗性：</string>
     <string name="armor_res_water">水属性抗性：</string>
@@ -432,26 +431,26 @@
     <string name="asb_weapon_slots_three">武器(3个槽位)</string>
 
     <!-- Bowgun strings -->
-    <string name="siege_mode">围攻模式</string>
+    <string name="siege_mode">特殊装填</string>
     <string name="ammo_divider">" • "</string>
     <string name="rapid_fire_short_wait">短</string>
     <string name="rapid_fire_medium_wait">中</string>
     <string name="rapid_fire_long_wait">长</string>
     <string name="rapid_fire_very_long_wait">非常长</string>
     <string name="ammo_none">(无)</string>
-    <string name="internal_ammo">内置弹药</string>
-    <string name="rapid_fire">连射</string>
+    <string name="internal_ammo">装填</string>
+    <string name="rapid_fire">特殊装填</string>
 
     <!-- Quest Detail -->
     <string name="quest_detail_tab_detail">详情</string>
     <string name="quest_detail_tab_rewards">奖励</string>
-    <string name="quest_detail_reward">奖励</string>
-    <string name="quest_detail_hrp">猎人评价点数</string>
+    <string name="quest_detail_reward">报酬</string>
+    <string name="quest_detail_hrp">获得点数</string>
     <string name="quest_detail_fee">费用</string>
     <string name="quest_detail_goal">目标</string>
     <string name="quest_detail_subquest">支线任务</string>
-    <string name="quest_detail_subquest_reward">支线任务奖励</string>
-    <string name="quest_detail_subquest_hrp">支线任务猎人评价点数</string>
+    <string name="quest_detail_subquest_reward">支线任务报酬</string>
+    <string name="quest_detail_subquest_hrp">支线任务点数</string>
     <string name="quest_detail_description">描述</string>
     <string name="unstable">不稳定的</string>
     <string name="hyper">强化的</string>

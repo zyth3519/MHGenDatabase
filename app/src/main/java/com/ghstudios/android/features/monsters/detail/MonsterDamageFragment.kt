@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,7 @@ class MonsterDamageFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        Log.i("TAG", "onCreateView: ")
         binding = FragmentMonsterDamageBinding.inflate(inflater, container, false)
         return binding.root
     }
