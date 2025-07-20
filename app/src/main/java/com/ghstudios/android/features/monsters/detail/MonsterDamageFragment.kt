@@ -41,7 +41,6 @@ class MonsterDamageFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        Log.i("TAG", "onCreateView: ")
         binding = FragmentMonsterDamageBinding.inflate(inflater, container, false)
         return binding.root
     }
