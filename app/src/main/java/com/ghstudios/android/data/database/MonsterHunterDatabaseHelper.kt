@@ -1271,7 +1271,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         qh.GroupBy = null
         qh.Having = null
         //JOE: Order them specifically Village - Guild - Permit - (Any others in alphabetical order by concating them with 3)
-        qh.OrderBy = "CASE q." + S.COLUMN_QUESTS_HUB + " WHEN 'Village' THEN 0 WHEN 'Guild' THEN 1 WHEN 'Permit' THEN 2 ELSE (3||q." + S.COLUMN_QUESTS_HUB + ") END, " + "q." + S.COLUMN_QUESTS_STARS + " ASC"
+        qh.OrderBy = "CASE q." + S.COLUMN_QUESTS_HUB + " WHEN '村庄' THEN 0 WHEN '集会所' THEN 1 WHEN '特殊许可证' THEN 2 ELSE (3||q." + S.COLUMN_QUESTS_HUB + ") END, " + "q." + S.COLUMN_QUESTS_STARS + " ASC"
         qh.Limit = null
 
         return MonsterToQuestCursor(wrapJoinHelper(builderMonsterToQuest(qh.Distinct), qh))
