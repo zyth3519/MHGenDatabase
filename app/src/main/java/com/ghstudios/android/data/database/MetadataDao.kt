@@ -24,7 +24,7 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
      */
     fun queryMonsterMetadata(monsterId : Long): MonsterMetadata? {
         val cursor = db.rawQuery("""
-            SELECT m._id, m.$col_name name,metadata,
+            SELECT m._id, m.$col_name name,metadata, "class",
                 (SELECT 1 FROM monster_damage d WHERE d.monster_id = m._id LIMIT 1) has_damage,
                 (SELECT 1 FROM monster_status s WHERE s.monster_id = m._id LIMIT 1) has_status
             FROM monsters m
@@ -40,7 +40,8 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
                     hasStatusData = it.getBoolean("has_status"),
                     hasLowRank = meta.and(1) > 0,
                     hasHighRank = meta.and(2)> 0,
-                    hasGRank =  meta.and(4)>0
+                    hasGRank =  meta.and(4)>0,
+                    monsterClass = it.getInt("class")
             )
         }.firstOrNull()
     }

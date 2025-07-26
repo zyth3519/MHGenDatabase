@@ -77,6 +77,7 @@ public class S {
 	public static final String COLUMN_ITEMS_ID = "_id";
 	public static final String COLUMN_ITEMS_NAME = "name";
 	public static final String COLUMN_ITEMS_JPN_NAME = "name_ja";
+	public static final String COLUMN_ITEMS_ZH_NAME = "name_zh";
 	public static final String COLUMN_ITEMS_TYPE = "type";
     public static final String COLUMN_ITEMS_SUB_TYPE = "sub_type";
 	public static final String COLUMN_ITEMS_RARITY = "rarity";

@@ -1,5 +1,7 @@
 package com.ghstudios.android.features.monsters.detail;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModelProviders;
 
 import com.ghstudios.android.data.classes.meta.MonsterMetadata;
@@ -27,8 +29,7 @@ public class MonsterDetailPagerActivity extends BasePagerActivity {
         tabs.addTab(R.string.monster_detail_tab_summary, () ->
                 MonsterSummaryFragment.newInstance(monsterId)
         );
-
-        if (meta.getHasDamageData() || meta.getHasStatusData()) {
+        if (meta.getMonsterClass() != 1 && (meta.getHasDamageData() || meta.getHasStatusData())) {
             // only include Damage tab if there is data
             tabs.addTab(R.string.monster_detail_tab_damage, () ->
                     MonsterDamageFragment.newInstance(monsterId)

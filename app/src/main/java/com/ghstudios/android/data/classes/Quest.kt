@@ -18,11 +18,11 @@ enum class QuestHub {
 
     companion object {
         private val converter = Converter(
-                "Village" to VILLAGE,
-                "Guild" to GUILD,
-                "Event" to EVENT,
-                "Arena" to ARENA,
-                "Permit" to PERMIT
+                "村庄" to VILLAGE,
+                "集会所" to GUILD,
+                "活动" to EVENT,
+                "斗技大会" to ARENA,
+                "特殊许可证" to PERMIT
         )
 
         @JvmStatic fun from(value: String) = converter.deserialize(value)

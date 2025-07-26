@@ -8,7 +8,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.ghstudios.android.mhgendatabase"
+        applicationId 'com.ghstudios.android.mhgendatabase'
         minSdkVersion 14
         targetSdkVersion 35
 
@@ -35,7 +35,7 @@ android {
         //2.3.6  Version Code:21   Released 12-20-2018
         //2.4.4  Version Code:25   Released 6-17-2025
         versionCode 26
-        versionName "2.4.4"
+        versionName '2.4.5'
 
         compileOptions {
             // we'll still be able to target lower java versions because of desugar

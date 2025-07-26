@@ -2,6 +2,7 @@ package com.ghstudios.android.data.cursors;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
+import android.util.Log;
 
 import com.ghstudios.android.data.classes.Converters;
 import com.ghstudios.android.data.classes.Item;
@@ -32,7 +33,8 @@ public class ItemToMaterialCursor extends CursorWrapper {
         // Get the Item
         Item item = new Item();
         long itemId = getLong(getColumnIndex(S.COLUMN_ITEM_TO_MATERIAL_ITEM_ID));
-        String itemName = getString(getColumnIndex("i" + S.COLUMN_ITEMS_NAME));
+//        String itemName = getString(getColumnIndex("i" + S.COLUMN_ITEMS_NAME));
+        String itemName = getString(getColumnIndex("i" + S.COLUMN_ITEMS_ZH_NAME));
         String type = getString(getColumnIndex(S.COLUMN_ITEMS_TYPE));
         int rarity = getInt(getColumnIndex(S.COLUMN_ITEMS_RARITY));
         String fileLocation = getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME));

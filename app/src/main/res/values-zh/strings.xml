@@ -233,14 +233,14 @@
     <string name="item_gather_common">[普通]</string>
     <string name="item_gather_rare">[稀有]</string>
     <string name="item_gather_full">%2$s %1$s</string>
-    <string name="gather_site_bug">昆虫</string>
+    <string name="gather_site_bug">捕虫</string>
     <string name="gather_site_gather">采集</string>
-    <string name="gather_site_mine">矿石</string>
-    <string name="gather_site_fishing_none">钓鱼（无饵料）</string>
-    <string name="gather_site_fishing_burst">钓鱼（爆破饵料）</string>
-    <string name="gather_site_fishing_goldenfish">钓鱼（黄金鱼饵料）</string>
-    <string name="gather_site_fishing_megafly">钓鱼（超大飞鱼饵料）</string>
-    <string name="gather_site_fishing_sushi">钓鱼（寿司鱼饵料）</string>
+    <string name="gather_site_mine">采矿</string>
+    <string name="gather_site_fishing_none">钓鱼</string>
+    <string name="gather_site_fishing_burst">钓鱼 (炸弹鱼团子)</string>
+    <string name="gather_site_fishing_goldenfish">钓鱼 (黄金团子)</string>
+    <string name="gather_site_fishing_megafly">钓鱼 (狂热蝇钓饵)</string>
+    <string name="gather_site_fishing_sushi">钓鱼 (刺身鱼团子)</string>
 
     <!-- Skill detail -->
     <string name="skill_tab_detail">详细信息</string>

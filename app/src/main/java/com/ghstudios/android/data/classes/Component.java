@@ -11,9 +11,11 @@ package com.ghstudios.android.data.classes;
  * This is used for forging armor, weapons, and decorations
  */
 public class Component {
-	public static String TYPE_CREATE = "Create";
-	public static String TYPE_IMPROVE = "Improve";
+//	public static String TYPE_CREATE = "Create";
+//	public static String TYPE_IMPROVE = "Improve";
 
+	public static String TYPE_CREATE = "生产";
+	public static String TYPE_IMPROVE = "强化";
 	private long id;			// Component id
 	private Item created;		// Created Item
 	private Item component;		// Component Item

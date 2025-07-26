@@ -44,7 +44,8 @@ class QuestExpandableListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mHub = QuestHub.from(arguments?.getString(ARG_HUB) ?: "Village")
+//        mHub = QuestHub.from(arguments?.getString(ARG_HUB) ?: "Village")
+        mHub = QuestHub.from(arguments?.getString(ARG_HUB) ?: "村庄")
         populateList(mHub)
     }
 

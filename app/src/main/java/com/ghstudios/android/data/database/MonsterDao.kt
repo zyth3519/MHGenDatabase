@@ -82,7 +82,7 @@ class MonsterDao(val dbMainHelper: SQLiteOpenHelper) {
             SELECT DISTINCT permit_monster_id, m.$column_name
             FROM quests
             JOIN monsters m ON m._id=permit_monster_id
-            WHERE hub="Permit"
+            WHERE hub="特殊许可证"
             ORDER BY stars
         """, emptyArray()).toList { it.getString(1) }.toTypedArray()
     }

@@ -12,5 +12,6 @@ class MonsterMetadata(
         val hasStatusData: Boolean,
         val hasLowRank:Boolean,
         val hasHighRank:Boolean,
-        val hasGRank:Boolean
+        val hasGRank:Boolean,
+        val monsterClass: Int
 )

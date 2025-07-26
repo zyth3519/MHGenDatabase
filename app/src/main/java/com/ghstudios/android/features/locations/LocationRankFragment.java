@@ -120,7 +120,8 @@ public class LocationRankFragment extends ListFragment implements
 		protected String getCustomGroup(Cursor c) {
 			Gathering g = ((GatheringCursor)c).getGathering();
 			return g.getArea() +" "
-					+(g.isFixed()?"Fixed ":"Random ")
+//					+(g.isFixed()?"Fixed ":"Random ")
+					+(g.isFixed()?"固定 ":"随机 ")
 					+g.getSite() + " "
 					+g.getGroup()
 					+(g.isFixed() ? "": " " + AssetLoader.localizeGatherModifier(g));

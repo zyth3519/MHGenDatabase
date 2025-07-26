@@ -1040,6 +1040,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 
         //Item
         projectionMap[i + S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME
+        projectionMap[i + S.COLUMN_ITEMS_ZH_NAME] = i + "." + S.COLUMN_ITEMS_ZH_NAME + " AS " + i + S.COLUMN_ITEMS_ZH_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = i + "." + S.COLUMN_ITEMS_ICON_COLOR
         projectionMap[S.COLUMN_ITEMS_TYPE] = i + "." + S.COLUMN_ITEMS_TYPE

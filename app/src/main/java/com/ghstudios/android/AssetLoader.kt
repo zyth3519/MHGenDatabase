@@ -124,15 +124,26 @@ object AssetLoader {
      * Returns a localized string of the gathering site for the given Gathering object.
      */
     @JvmStatic fun localizeGatherSite(gather: Gathering): String {
+//        val resId = when (gather.site) {
+//            "Bug" -> R.string.gather_site_bug
+//            "Fishing (Burst Bait)" -> R.string.gather_site_fishing_burst
+//            "Fishing (Goldenfish Bait)" -> R.string.gather_site_fishing_goldenfish
+//            "Fishing (Mega Fishing Fly)" -> R.string.gather_site_fishing_megafly
+//            "Fishing (No Bait)" -> R.string.gather_site_fishing_none
+//            "Fishing (Sushifish Bait)" -> R.string.gather_site_fishing_sushi
+//            "Gather" -> R.string.gather_site_gather
+//            "Mine" -> R.string.gather_site_mine
+//            else -> 0
+//        }
         val resId = when (gather.site) {
-            "Bug" -> R.string.gather_site_bug
-            "Fishing (Burst Bait)" -> R.string.gather_site_fishing_burst
-            "Fishing (Goldenfish Bait)" -> R.string.gather_site_fishing_goldenfish
-            "Fishing (Mega Fishing Fly)" -> R.string.gather_site_fishing_megafly
-            "Fishing (No Bait)" -> R.string.gather_site_fishing_none
-            "Fishing (Sushifish Bait)" -> R.string.gather_site_fishing_sushi
-            "Gather" -> R.string.gather_site_gather
-            "Mine" -> R.string.gather_site_mine
+            "捕虫" -> R.string.gather_site_bug
+            "钓鱼 (炸弹鱼团子)" -> R.string.gather_site_fishing_burst
+            "钓鱼 (黄金团子)" -> R.string.gather_site_fishing_goldenfish
+            "钓鱼 (狂热蝇钓饵)" -> R.string.gather_site_fishing_megafly
+            "钓鱼" -> R.string.gather_site_fishing_none
+            "钓鱼 (刺身鱼团子)" -> R.string.gather_site_fishing_sushi
+            "采集" -> R.string.gather_site_gather
+            "采矿" -> R.string.gather_site_mine
             else -> 0
         }
 
