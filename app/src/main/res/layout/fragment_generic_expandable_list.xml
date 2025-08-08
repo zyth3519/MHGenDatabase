@@ -12,17 +12,16 @@
         android:layout_width="0px"
         android:layout_height="0px"/>
 
-    <EditText android:id="@+id/input_search"
+    <EditText
+        android:id="@+id/input_search"
+        style="@style/text_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/filter_hint"
-        android:inputType="textVisiblePassword"
-        android:layout_marginStart="62dp"
-        android:layout_marginLeft="62dp"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/text_medium"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="62dp"
+        tools:visibility="visible" />
 
     <ExpandableListView
         android:id="@+id/expandableListView"
