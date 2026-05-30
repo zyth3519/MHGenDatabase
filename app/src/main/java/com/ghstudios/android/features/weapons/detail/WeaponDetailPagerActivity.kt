@@ -7,9 +7,10 @@ import com.ghstudios.android.AssetLoader
 
 import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.mhgendatabase.R
-import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment
+import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.MenuSection
+import android.widget.Toast
 
 class WeaponDetailPagerActivity : BasePagerActivity() {
     companion object {
@@ -17,8 +18,6 @@ class WeaponDetailPagerActivity : BasePagerActivity() {
          * A key for passing a weapon ID as a long
          */
         const val EXTRA_WEAPON_ID = "com.daviancorp.android.android.ui.detail.weapon_id"
-
-        private const val DIALOG_WISHLIST_ADD = "wishlist_add"
     }
 
     internal var weaponId: Long = 0
@@ -72,10 +71,9 @@ class WeaponDetailPagerActivity : BasePagerActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.add_to_wishlist -> {
-                val fm = supportFragmentManager
-                val dialogCopy = WishlistDataAddDialogFragment
-                        .newInstance(weaponId, name!!)
-                dialogCopy.show(fm, DIALOG_WISHLIST_ADD)
+                val favorited = DataManager.get().wishlistManager.toggleFavorite(weaponId)
+                val msg = if (favorited) R.string.favorite_added else R.string.favorite_removed
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

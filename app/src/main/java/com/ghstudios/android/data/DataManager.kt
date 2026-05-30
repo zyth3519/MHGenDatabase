@@ -70,6 +70,10 @@ class DataManager private constructor(private val mAppContext: Context) {
 
             return sDataManager!!
         }
+
+        @JvmStatic fun toggleFavorite(itemId: Long): Boolean {
+            return get().wishlistManager.toggleFavorite(itemId)
+        }
     }
 
     private val mHelper = MonsterHunterDatabaseHelper.getInstance(mAppContext)

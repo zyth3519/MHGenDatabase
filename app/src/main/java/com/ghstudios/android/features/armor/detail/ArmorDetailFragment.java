@@ -25,7 +25,8 @@ import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToSkillTree;
-import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment;
+import android.widget.Toast;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.mhgendatabase.databinding.FragmentArmorDetailBinding;
 
@@ -36,7 +37,6 @@ import androidx.lifecycle.ViewModelProvider;
 public class ArmorDetailFragment extends Fragment {
     private static final String ARG_ARMOR_ID = "ARMOR_ID";
 
-    private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
 
     private ArmorDetailViewModel viewModel;
     private Armor armor; // set using the viewmodel
@@ -156,10 +156,9 @@ public class ArmorDetailFragment extends Fragment {
         int itemId = item.getItemId();
         if (itemId == R.id.add_to_wishlist) {
             if (armor != null) {
-                FragmentManager fm = this.getFragmentManager();
-                WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
-                        .newInstance(armor.getId(), armor.getName());
-                dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
+                boolean favorited = DataManager.toggleFavorite(armor.getId());
+                int msg = favorited ? R.string.favorite_added : R.string.favorite_removed;
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
             }
             return true;
         } else {

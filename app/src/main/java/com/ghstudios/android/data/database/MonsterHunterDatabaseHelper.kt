@@ -71,7 +71,7 @@ For queries with JOINs:
 //Version 13 - v2.3.2 - Armor Family Translations
 
 private const val DATABASE_NAME = "mhgu.db"
-private const val DATABASE_VERSION = 13
+private const val DATABASE_VERSION = 14
 
 /**
  * Initialize the helper object

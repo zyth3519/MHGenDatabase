@@ -142,7 +142,7 @@
     <string name="title_decorations">装饰品</string>
     <string name="title_skills">技能</string>
     <string name="title_asb">护甲套装构建器</string>
-    <string name="title_wishlists">心愿单</string>
+    <string name="title_wishlists">收藏</string>
     <string name="title_talismans">护石</string>
 
     <string name="drawer_group_other">其他</string>
@@ -152,14 +152,9 @@
 
     <string name="logo_description">标志</string>
     <!-- Standard Menu Options -->
-    <string name="option_wishlist_add">创建心愿单</string>
-    <string name="option_wishlist_delete">删除心愿单</string>
-    <string name="option_wishlist_copy">复制心愿单</string>
-    <string name="option_wishlist_rename">重命名心愿单</string>
-    <string name="option_wishlist_edit">编辑心愿单</string>
-    <string name="option_wishlist_data_add">添加至心愿单</string>
+    <string name="option_wishlist_data_add">收藏</string>
     <string name="option_wishlist_data_edit">编辑数量</string>
-    <string name="option_wishlist_data_delete">从心愿单删除</string>
+    <string name="option_wishlist_data_delete">取消收藏</string>
 
     <!-- Page titles -->
     <string name="title_search">搜索物品</string>
@@ -167,7 +162,7 @@
     <string name="monster_image">怪物图像</string>
     <string name="monster_damage">怪物伤害</string>
     <string name="arena_quests">斗技大会</string>
-    <string name="wishlist">心愿单</string>
+    <string name="wishlist">收藏</string>
 
     <string name="dialog_armor_filter_title">筛选</string>
     <string name="armor_filter_label_rank">等级</string>
@@ -365,7 +360,11 @@
     <string name="wishlist_created">已创建心愿单 %s</string>
     <string name="wishlist_add_item">已添加 %s</string>
     <string name="wishlist_renamed">已重命名为 %s</string>
-    <string name="wishlist_deleted">已删除心愿单</string>
+    <string name="wishlist_deleted">已取消收藏</string>
+
+    <!-- Favorites -->
+    <string name="favorite_added">已收藏</string>
+    <string name="favorite_removed">已取消收藏</string>
 
     <string name="no_slots" translatable="false">―――</string>
     <string name="one_slot" translatable="false">○――</string>

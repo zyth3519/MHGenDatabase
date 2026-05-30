@@ -3,49 +3,30 @@ package com.ghstudios.android.features.wishlist.list
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ghstudios.android.data.DataManager
-import com.ghstudios.android.data.classes.Wishlist
+import com.ghstudios.android.data.classes.WishlistData
 import com.ghstudios.android.util.UndoableOperation
 import com.ghstudios.android.util.loggedThread
 
-/**
- * Viewmodel storing data for the wishlists.
- */
-class WishlistListViewModel: ViewModel() {
-    val wishlistManager = DataManager.get().wishlistManager
+class WishlistListViewModel : ViewModel() {
+    private val wm = DataManager.get().wishlistManager
+    private var prev: UndoableOperation? = null
+    val favoriteItems = MutableLiveData<List<WishlistData>>()
 
-    private var previousDelete: UndoableOperation? = null
-    val wishlistData = MutableLiveData<List<Wishlist>>()
+    init { reload() }
 
-    init {
-        reload()
-    }
-
-    /**
-     * Reloads the list and completes any pending delete operations
-     */
     fun reload() {
-        previousDelete?.complete()
-        loggedThread("Reload Wishlists") {
-            wishlistData.postValue(wishlistManager.getWishlists())
-        }
+        prev?.complete()
+        loggedThread("Reload Favorites") { favoriteItems.postValue(wm.getFavorites()) }
     }
 
-    fun startDeleteWishlist(wishlistId: Long): UndoableOperation {
-        val previousData = wishlistData.value ?: emptyList()
-        wishlistData.value = previousData.filter { it.id != wishlistId }
-
-        val operation = UndoableOperation(
-                onComplete = { deleteWishlist(wishlistId) },
-                onUndo = { wishlistData.value = previousData }
+    fun startDeleteFavorite(dataId: Long): UndoableOperation {
+        val old = favoriteItems.value ?: emptyList()
+        favoriteItems.value = old.filter { it.id != dataId }
+        val op = UndoableOperation(
+            onComplete = { wm.removeFavorite(dataId) },
+            onUndo = { favoriteItems.value = old }
         )
-        previousDelete = operation
-        return operation
-    }
-
-    /**
-     * Deletes a wishlist and reloads the list.
-     */
-    fun deleteWishlist(wishlistId: Long) {
-        wishlistManager.deleteWishlist(wishlistId)
+        prev = op
+        return op
     }
 }

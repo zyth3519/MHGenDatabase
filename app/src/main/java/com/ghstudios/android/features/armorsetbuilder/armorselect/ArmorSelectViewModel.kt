@@ -85,22 +85,15 @@ class ArmorSelectViewModel : ViewModel() {
             allArmorData.postValue(allArmorItems)
             filterValue.postValue("")
 
-            // load wishlist data
-            val wishlistArmorIds = mutableSetOf<Long>()
-            val wishlistManager = dataManager.wishlistManager
-            for (wishlist in wishlistManager.getWishlists()) {
-                for (data in wishlistManager.getWishlistItems(wishlist.id)) {
-                    if (data.item.type == ItemType.ARMOR) {
-                        wishlistArmorIds.add(data.item.id)
-                    }
-                }
+            // load favorites data
+            val favoritedIds = mutableSetOf<Long>()
+            for (data in dataManager.wishlistManager.getFavorites()) {
+                if (data.item.type == ItemType.ARMOR) favoritedIds.add(data.item.id)
             }
 
-            // Now go over the armor pieces loaded above, only taking those existing in wishlists.
-            // This creates an interesection of filter armors and wishlist armors
             val wishlistArmors = allArmorItems.asSequence()
                     .flatMap { it.armor.asSequence() }
-                    .filter { it.armor.id in wishlistArmorIds }
+                    .filter { it.armor.id in favoritedIds }
                     .toList()
             armorWishlistData.postValue(wishlistArmors)
         }

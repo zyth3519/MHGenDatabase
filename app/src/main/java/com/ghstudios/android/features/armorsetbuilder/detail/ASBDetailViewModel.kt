@@ -58,26 +58,6 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * Creates a new wishlist and adds the armor items to that wishlist.
-     * @param callback Executed if the operation was a success
-     */
-    fun addToNewWishlist(name: String, callback: () -> Unit) {
-        loggedThread("Add to wishlist") {
-            val wishlistManager = dataManager.wishlistManager
-            val wishlistId = wishlistManager.addWishlist(name)
-            for (piece in session.pieces) {
-                if (piece.equipment is Armor) {
-                    val armorId = piece.equipment.id
-                    wishlistManager.addWishlistItem(wishlistId, armorId, quantity = 1)
-                }
-            }
-
-            // execute callback now that it finished
-            Handler(Looper.getMainLooper()).post(callback)
-        }
-    }
-
-    /**
      * Updates the internal session weapon slot count,
      * then persists that change to the DB.
      */

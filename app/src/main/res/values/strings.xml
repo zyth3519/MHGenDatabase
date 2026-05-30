@@ -144,7 +144,7 @@
     <string name="title_decorations">Decorations</string>
     <string name="title_skills">Skills</string>
     <string name="title_asb">Armor Set Builder</string>
-    <string name="title_wishlists">Wishlists</string>
+    <string name="title_wishlists">Favorites</string>
     <string name="title_talismans">Talismans</string>
 
     <string name="drawer_group_other">Other</string>
@@ -155,14 +155,9 @@
     <string name="logo_description">Logo</string>
 
     <!-- Standard Menu Options -->
-    <string name="option_wishlist_add">Create Wishlist</string>
-    <string name="option_wishlist_delete">Delete wishlist</string>
-    <string name="option_wishlist_copy">Copy wishlist</string>
-    <string name="option_wishlist_rename">Rename wishlist</string>
-    <string name="option_wishlist_edit">Edit wishlist</string>
-    <string name="option_wishlist_data_add">Add to wishlist</string>
+    <string name="option_wishlist_data_add">Favorite</string>
     <string name="option_wishlist_data_edit">Edit quantity</string>
-    <string name="option_wishlist_data_delete">Delete from wishlist</string>
+    <string name="option_wishlist_data_delete">Remove from favorites</string>
 
     <!-- Page titles -->
     <string name="title_search">Search item</string>
@@ -170,7 +165,7 @@
     <string name="monster_image">monster_image</string>
     <string name="monster_damage">monster_damage</string>
     <string name="arena_quests">Arena Quests</string>
-    <string name="wishlist">Wishlists</string>
+    <string name="wishlist">Favorites</string>
 
     <string name="dialog_armor_filter_title">Filter</string>
     <string name="armor_filter_label_rank">Rank</string>
@@ -397,7 +392,11 @@
     <string name="wishlist_created">Created wishlist %s</string>
     <string name="wishlist_add_item">Added %s</string>
     <string name="wishlist_renamed">Renamed to %s</string>
-    <string name="wishlist_deleted">Wishlist Deleted</string>
+    <string name="wishlist_deleted">Removed from favorites</string>
+
+    <!-- Favorites -->
+    <string name="favorite_added">Added to favorites</string>
+    <string name="favorite_removed">Removed from favorites</string>
 
     <string name="no_slots" translatable="false">―――</string>
     <string name="one_slot" translatable="false">○――</string>

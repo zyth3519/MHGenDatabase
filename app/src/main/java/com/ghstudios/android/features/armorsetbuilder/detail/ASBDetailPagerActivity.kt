@@ -14,6 +14,8 @@ import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListFragment
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.MenuSection
+import com.ghstudios.android.data.DataManager
+import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.Rank
 import com.ghstudios.android.features.armorsetbuilder.list.ASBSetAddDialogFragment
 import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListPagerActivity
@@ -85,10 +87,11 @@ class ASBDetailPagerActivity : BasePagerActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.add_to_wishlist -> {
-                val fm = supportFragmentManager
-                val dialog = ASBAddToWishlistDialog()
-                dialog.setTargetFragment(null, REQUEST_CODE_ADD_TO_WISHLIST)
-                dialog.show(fm, "create_wishlist")
+                val wm = DataManager.get().wishlistManager
+                for (piece in viewModel.session.pieces) {
+                    if (piece.equipment is Armor) wm.toggleFavorite(piece.equipment.id)
+                }
+                Toast.makeText(this, R.string.favorite_added, Toast.LENGTH_SHORT).show()
                 return true
             }
             R.id.asb_edit -> {
@@ -127,16 +130,6 @@ class ASBDetailPagerActivity : BasePagerActivity() {
 
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                REQUEST_CODE_ADD_TO_WISHLIST -> {
-                    val name = data.getStringExtra(ASBAddToWishlistDialog.EXTRA_NAME)
-                    if (!name.isNullOrEmpty()) {
-                        viewModel.addToNewWishlist(name) {
-                            val message = getString(R.string.wishlist_created, name)
-                            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-
                 // Executed after the edit dialog completes
                 REQUEST_CODE_SET_EDIT -> {
                     val name = data.getStringExtra(ASBSetListFragment.EXTRA_ASB_SET_NAME) ?: ""

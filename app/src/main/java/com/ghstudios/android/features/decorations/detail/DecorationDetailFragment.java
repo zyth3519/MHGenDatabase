@@ -20,7 +20,8 @@ import com.ghstudios.android.components.LabelTextRowCell;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.Item;
-import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment;
+import android.widget.Toast;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.mhgendatabase.databinding.FragmentDecorationDetailBinding;
 
@@ -30,7 +31,6 @@ import java.util.Map;
 public class DecorationDetailFragment extends Fragment {
     private static final String ARG_DECORATION_ID = "DECORATION_ID";
 
-    private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
 
     private FragmentDecorationDetailBinding binding;
 
@@ -158,10 +158,9 @@ public class DecorationDetailFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.add_to_wishlist) {
-            FragmentManager fm = this.getFragmentManager();
-            WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
-                    .newInstance(decorationId, decorationName);
-            dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
+            boolean favorited = DataManager.toggleFavorite(decorationId);
+            int msg = favorited ? R.string.favorite_added : R.string.favorite_removed;
+            Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
             return true;
         } else {
                 return super.onOptionsItemSelected(item);

@@ -8,8 +8,8 @@ import android.view.MenuItem;
 import com.ghstudios.android.data.classes.PalicoWeapon;
 import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
+import android.widget.Toast;
 import com.ghstudios.android.components.ComponentListFragment;
-import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
 
@@ -19,7 +19,6 @@ import com.ghstudios.android.MenuSection;
 public class PalicoWeaponDetailActivity extends BasePagerActivity {
 
     public static final String EXTRA_WEAPON_ID = "WEAPON_ID";
-    private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
 
     private long id;
     private String name;
@@ -56,10 +55,9 @@ public class PalicoWeaponDetailActivity extends BasePagerActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.add_to_wishlist) {
-            FragmentManager fm = getSupportFragmentManager();
-            WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
-                    .newInstance(id, name);
-            dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
+            boolean favorited = DataManager.toggleFavorite(id);
+            int msg = favorited ? R.string.favorite_added : R.string.favorite_removed;
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
             return true;
         } else {
                 return super.onOptionsItemSelected(item);
