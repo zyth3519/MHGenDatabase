@@ -3,6 +3,7 @@ package com.ghstudios.android.features.weapons.list;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.GenericActivity;
 import com.ghstudios.android.MenuSection;
 
@@ -22,7 +23,7 @@ public class WeaponListActivity extends GenericActivity {
         }
 
         super.onCreate(savedInstanceState);
-        setTitle(type);
+        setTitle(AssetLoader.localizeWeaponType(type));
 
     }
 

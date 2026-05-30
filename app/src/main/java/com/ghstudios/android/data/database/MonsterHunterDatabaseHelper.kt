@@ -1697,14 +1697,18 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
             return querySkillTrees()
         }
 
-        val filter = SqlFilter(column_name, searchTerm)
+        // Use the same localized column for both tables
+        val colName = localizeColumn("name")
+        val predicate = "$colName LIKE ?"
+        val param = "%$searchTerm%"
 
         return SkillTreeCursor(db.rawQuery("""
-            SELECT _id, $column_name as name, name_ja
-            FROM ${S.TABLE_SKILL_TREES}
-            WHERE ${filter.predicate}
-            ORDER BY $column_name ASC
-        """, filter.parameters))
+            SELECT DISTINCT st._id, st.$colName as name, st.name_ja
+            FROM ${S.TABLE_SKILL_TREES} st
+            LEFT JOIN ${S.TABLE_SKILLS} sk ON sk.${S.COLUMN_SKILLS_SKILL_TREE_ID} = st._id
+            WHERE st.$predicate OR sk.$predicate
+            ORDER BY st.$colName ASC
+        """, arrayOf(param, param)))
     }
 
     /*
@@ -1912,7 +1916,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 	 */
     fun queryWeaponTreeParent(id: Long): WeaponTreeCursor {
         return WeaponTreeCursor(writableDatabase.rawQuery("""
-            SELECT i._id AS _id,i.name AS name FROM components c
+            SELECT i._id AS _id,i.$column_name AS name FROM components c
             INNER JOIN weapons w on w._id = c.component_item_id
             JOIN items i ON i._id = w._id
             WHERE c.created_item_id=?
@@ -1922,7 +1926,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     fun queryWeaponFamilyBranches(id: Long): WeaponTreeCursor {
         // roughly equivalent to c.component family = family AND c.component family != c.created family
         return WeaponTreeCursor(writableDatabase.rawQuery("""
-            SELECT i._id AS _id,i.name AS name FROM components c
+            SELECT i._id AS _id,i.$column_name AS name FROM components c
             JOIN weapons w on w._id = c.created_item_id
             JOIN items i ON i._id = w._id
             WHERE (c.component_item_id & ${S.WEAPON_FAMILY_MASK})= (? & ${S.WEAPON_FAMILY_MASK}) AND
@@ -1981,7 +1985,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         val projectionMap = HashMap<String, String>()
 
         projectionMap["_id"] = i2 + "." + S.COLUMN_ITEMS_ID + " AS " + "_id"
-        projectionMap[S.COLUMN_ITEMS_NAME] = i2 + "." + S.COLUMN_ITEMS_NAME
+        projectionMap[S.COLUMN_ITEMS_NAME] = "$i2.$column_name"
 
         //Create new querybuilder
         val QB = SQLiteQueryBuilder()
@@ -2016,7 +2020,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         val projectionMap = HashMap<String, String>()
 
         projectionMap["_id"] = i2 + "." + S.COLUMN_ITEMS_ID + " AS " + "_id"
-        projectionMap[S.COLUMN_ITEMS_NAME] = i2 + "." + S.COLUMN_ITEMS_NAME
+        projectionMap[S.COLUMN_ITEMS_NAME] = "$i2.$column_name"
 
         //Create new querybuilder
         val QB = SQLiteQueryBuilder()
@@ -2789,198 +2793,5 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 
         QB.setProjectionMap(projectionMap)
         return QB
-    }
-
-    /********************************* ARMOR SET BUILDER QUERIES  */
-
-    /**
-     * Get all armor sets.
-     */
-    fun queryASBSets(): ASBSetCursor {
-        val qh = QueryHelper()
-        qh.Columns = null
-        qh.Table = S.TABLE_ASB_SETS
-        qh.Selection = null
-        qh.SelectionArgs = null
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return ASBSetCursor(wrapJoinHelper(builderASBSet(), qh))
-    }
-
-    /**
-     * Retrieves a specific Armor Set Builder set in the database.
-     */
-    fun queryASBSet(id: Long): ASBSetCursor {
-        val qh = QueryHelper()
-        qh.Columns = null
-        qh.Table = S.TABLE_ASB_SETS
-        qh.Selection = "ar." + S.COLUMN_ASB_SET_ID + " = ?"
-        qh.SelectionArgs = arrayOf(id.toString())
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = "1"
-
-        return ASBSetCursor(wrapJoinHelper(builderASBSet(), qh))
-    }
-
-    /**
-     * Get all armor sets.
-     */
-    fun queryASBSessions(): ASBSessionCursor {
-        val qh = QueryHelper()
-        qh.Columns = null
-        qh.Table = S.TABLE_ASB_SETS
-        qh.Selection = null
-        qh.SelectionArgs = null
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return ASBSessionCursor(wrapJoinHelper(builderASBSession(), qh))
-    }
-
-    /**
-     * Get all armor sets.
-     */
-    fun queryASBSessions(db: SQLiteDatabase): Cursor {
-        return db.rawQuery("SELECT * FROM " + S.TABLE_ASB_SETS, null)
-    }
-
-    /**
-     * Retrieves a specific Armor Set Builder set in the database.
-     */
-    fun queryASBSession(id: Long): ASBSessionCursor {
-        val qh = QueryHelper()
-        qh.Columns = null
-        qh.Table = S.TABLE_ASB_SETS
-        qh.Selection = "ar." + S.COLUMN_ASB_SET_ID + " = ?"
-        qh.SelectionArgs = arrayOf(id.toString())
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = "1"
-
-        return ASBSessionCursor(wrapJoinHelper(builderASBSession(), qh))
-    }
-
-    /**
-     * Creates a new Armor Set Builder set in the entries of the database.
-     */
-    fun queryAddASBSet(name: String, rank: Rank, hunterType: Int): Long {
-        val values = ContentValues()
-
-        values.put(S.COLUMN_ASB_SET_NAME, name)
-        values.put(S.COLUMN_ASB_SET_RANK, rank.value)
-        values.put(S.COLUMN_ASB_SET_HUNTER_TYPE, hunterType)
-        values.put(S.COLUMN_TALISMAN_EXISTS, 0)
-        values.put(S.COLUMN_ASB_WEAPON_SLOTS, 3)
-
-        return insertRecord(S.TABLE_ASB_SETS, values)
-    }
-
-    fun queryUpdateASBSet(asbSetId: Long, name: String, rank: Rank, hunterType: Int): Long {
-        val filter = S.COLUMN_ASB_SET_ID + " = " + asbSetId
-
-        val values = ContentValues()
-
-        values.put(S.COLUMN_ASB_SET_NAME, name)
-        values.put(S.COLUMN_ASB_SET_RANK, rank.value)
-        values.put(S.COLUMN_ASB_SET_HUNTER_TYPE, hunterType)
-
-        return updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
-    }
-
-    fun queryDeleteASBSet(setId: Long): Boolean {
-        val filter = S.COLUMN_ASB_SET_ID + " = " + setId
-
-        return deleteRecord(S.TABLE_ASB_SETS, filter, emptyArray())
-    }
-
-    /**
-     * Builds an SQL query that gives us all information about the `ASBSet` in question.
-     */
-    private fun builderASBSet(): SQLiteQueryBuilder {
-        val projectionMap = HashMap<String, String>()
-
-        val set = "ar"
-
-        projectionMap["_id"] = set + "." + S.COLUMN_ASB_SET_ID + " AS " + "_id"
-
-        projectionMap[S.COLUMN_ASB_SET_NAME] = set + "." + S.COLUMN_ASB_SET_NAME
-        projectionMap[S.COLUMN_ASB_SET_RANK] = set + "." + S.COLUMN_ASB_SET_RANK
-        projectionMap[S.COLUMN_ASB_SET_HUNTER_TYPE] = set + "." + S.COLUMN_ASB_SET_HUNTER_TYPE
-
-        val qb = SQLiteQueryBuilder()
-        qb.tables = S.TABLE_ASB_SETS + " AS " + set
-        qb.setProjectionMap(projectionMap)
-
-        return qb
-    }
-
-    /**
-     * Builds an SQL query that gives us all information about the `ASBSession` in question.
-     */
-    private fun builderASBSession(): SQLiteQueryBuilder {
-        val projectionMap = HashMap<String, String>()
-
-        val set = "ar"
-
-        projectionMap["_id"] = set + "." + S.COLUMN_ASB_SET_ID + " AS " + "_id"
-
-        projectionMap[S.COLUMN_ASB_SET_NAME] = set + "." + S.COLUMN_ASB_SET_NAME
-        projectionMap[S.COLUMN_ASB_SET_RANK] = set + "." + S.COLUMN_ASB_SET_RANK
-        projectionMap[S.COLUMN_ASB_SET_HUNTER_TYPE] = set + "." + S.COLUMN_ASB_SET_HUNTER_TYPE
-
-        projectionMap[S.COLUMN_ASB_WEAPON_SLOTS] = set + "." + S.COLUMN_ASB_WEAPON_SLOTS
-        projectionMap[S.COLUMN_ASB_WEAPON_DECORATION_1_ID] = set + "." + S.COLUMN_ASB_WEAPON_DECORATION_1_ID
-        projectionMap[S.COLUMN_ASB_WEAPON_DECORATION_2_ID] = set + "." + S.COLUMN_ASB_WEAPON_DECORATION_2_ID
-        projectionMap[S.COLUMN_ASB_WEAPON_DECORATION_3_ID] = set + "." + S.COLUMN_ASB_WEAPON_DECORATION_3_ID
-
-        projectionMap[S.COLUMN_HEAD_ARMOR_ID] = set + "." + S.COLUMN_HEAD_ARMOR_ID
-        projectionMap[S.COLUMN_HEAD_DECORATION_1_ID] = set + "." + S.COLUMN_HEAD_DECORATION_1_ID
-        projectionMap[S.COLUMN_HEAD_DECORATION_2_ID] = set + "." + S.COLUMN_HEAD_DECORATION_2_ID
-        projectionMap[S.COLUMN_HEAD_DECORATION_3_ID] = set + "." + S.COLUMN_HEAD_DECORATION_3_ID
-
-        projectionMap[S.COLUMN_BODY_ARMOR_ID] = set + "." + S.COLUMN_BODY_ARMOR_ID
-        projectionMap[S.COLUMN_BODY_DECORATION_1_ID] = set + "." + S.COLUMN_BODY_DECORATION_1_ID
-        projectionMap[S.COLUMN_BODY_DECORATION_2_ID] = set + "." + S.COLUMN_BODY_DECORATION_2_ID
-        projectionMap[S.COLUMN_BODY_DECORATION_3_ID] = set + "." + S.COLUMN_BODY_DECORATION_3_ID
-
-        projectionMap[S.COLUMN_ARMS_ARMOR_ID] = set + "." + S.COLUMN_ARMS_ARMOR_ID
-        projectionMap[S.COLUMN_ARMS_DECORATION_1_ID] = set + "." + S.COLUMN_ARMS_DECORATION_1_ID
-        projectionMap[S.COLUMN_ARMS_DECORATION_2_ID] = set + "." + S.COLUMN_ARMS_DECORATION_2_ID
-        projectionMap[S.COLUMN_ARMS_DECORATION_3_ID] = set + "." + S.COLUMN_ARMS_DECORATION_3_ID
-
-        projectionMap[S.COLUMN_WAIST_ARMOR_ID] = set + "." + S.COLUMN_WAIST_ARMOR_ID
-        projectionMap[S.COLUMN_WAIST_DECORATION_1_ID] = set + "." + S.COLUMN_WAIST_DECORATION_1_ID
-        projectionMap[S.COLUMN_WAIST_DECORATION_2_ID] = set + "." + S.COLUMN_WAIST_DECORATION_2_ID
-        projectionMap[S.COLUMN_WAIST_DECORATION_3_ID] = set + "." + S.COLUMN_WAIST_DECORATION_3_ID
-
-        projectionMap[S.COLUMN_LEGS_ARMOR_ID] = set + "." + S.COLUMN_LEGS_ARMOR_ID
-        projectionMap[S.COLUMN_LEGS_DECORATION_1_ID] = set + "." + S.COLUMN_LEGS_DECORATION_1_ID
-        projectionMap[S.COLUMN_LEGS_DECORATION_2_ID] = set + "." + S.COLUMN_LEGS_DECORATION_2_ID
-        projectionMap[S.COLUMN_LEGS_DECORATION_3_ID] = set + "." + S.COLUMN_LEGS_DECORATION_3_ID
-
-        projectionMap[S.COLUMN_TALISMAN_EXISTS] = set + "." + S.COLUMN_TALISMAN_EXISTS
-        projectionMap[S.COLUMN_TALISMAN_TYPE] = set + "." + S.COLUMN_TALISMAN_TYPE
-        projectionMap[S.COLUMN_TALISMAN_SLOTS] = set + "." + S.COLUMN_TALISMAN_SLOTS
-        projectionMap[S.COLUMN_TALISMAN_SKILL_1_ID] = set + "." + S.COLUMN_TALISMAN_SKILL_1_ID
-        projectionMap[S.COLUMN_TALISMAN_SKILL_1_POINTS] = set + "." + S.COLUMN_TALISMAN_SKILL_1_POINTS
-        projectionMap[S.COLUMN_TALISMAN_SKILL_2_ID] = set + "." + S.COLUMN_TALISMAN_SKILL_2_ID
-        projectionMap[S.COLUMN_TALISMAN_SKILL_2_POINTS] = set + "." + S.COLUMN_TALISMAN_SKILL_2_POINTS
-        projectionMap[S.COLUMN_TALISMAN_DECORATION_1_ID] = set + "." + S.COLUMN_TALISMAN_DECORATION_1_ID
-        projectionMap[S.COLUMN_TALISMAN_DECORATION_2_ID] = set + "." + S.COLUMN_TALISMAN_DECORATION_2_ID
-        projectionMap[S.COLUMN_TALISMAN_DECORATION_3_ID] = set + "." + S.COLUMN_TALISMAN_DECORATION_3_ID
-
-        val qb = SQLiteQueryBuilder()
-        qb.tables = S.TABLE_ASB_SETS + " AS " + set
-        qb.setProjectionMap(projectionMap)
-
-        return qb
     }
 }

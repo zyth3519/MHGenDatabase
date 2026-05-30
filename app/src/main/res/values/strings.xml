@@ -143,7 +143,6 @@
     <string name="title_locations">Locations</string>
     <string name="title_decorations">Decorations</string>
     <string name="title_skills">Skills</string>
-    <string name="title_asb">Armor Set Builder</string>
     <string name="title_wishlists">Favorites</string>
     <string name="title_talismans">Talismans</string>
 
@@ -379,7 +378,6 @@
     <string name="wishlist_quantity_label">Quantity:</string>
     <string name="wishlist_quantity_hint">Quantity</string>
     <string name="wishlist_add_title">Add to which wishlist?</string>
-    <string name="wishlist_add_set_title">Add armorset to which wishlist?</string>
     <string name="wishlist_add_success">Added to %s wishlist</string>
     <string name="wishlist_text_total">Total cost</string>
     <string name="wishlist_error_name_required">Wishlist name is required</string>
@@ -408,66 +406,15 @@
     <string name="three_slot_jewel" translatable="false">●●●</string>
 
 
-    <!-- Armor Set Builder Stuff !-->
-    <string name="dialog_title_add_asb_set">New Set</string>
-    <string name="dialog_title_edit_asb_set">Edit Set</string>
-    <string name="asb_dialog_name_hint">Set Name</string>
-    <string name="asb_dialog_rank">Rank</string>
-    <string name="asb_dialog_hunter_type">Hunter Type</string>
-    <string name="asb_context_action_delete">Delete</string>
-    <string name="asb_context_action_edit_data">Edit Data</string>
-    <string name="asb_context_action_copy">Copy</string>
-
-    <string name="activity_asb">Armor Set Builder</string>
-    <string name="asb_tab_equipment">Equipment</string>
-    <string name="asb_title_select_armor">Select Armor</string>
-    <string name="asb_title_select_head">Select Head</string>
-    <string name="asb_title_select_body">Select Body</string>
-    <string name="asb_title_select_arms">Select Arms</string>
-    <string name="asb_title_select_waist">Select Waist</string>
-    <string name="asb_title_select_legs">Select Legs</string>
-    <string name="asb_title_armor_all">All</string>
-
-    <string name="asb_empty_slot">Empty slot</string>
-    <string name="asb_no_slots">No slots</string>
-    <string name="asb_action_select">Select</string>
-    <string name="asb_action_add">Add</string>
-    <string name="asb_action_remove">Remove</string>
-    <string name="asb_action_edit">Edit</string>
-    <string name="asb_result_set_deleted">Armor Set Deleted</string>
-    <string name="asb_result_talisman_deleted">Talisman Deleted</string>
-
-    <string name="option_asb_set_add">New Set</string>
-    <string name="option_asb_edit">Edit Set</string>
-    <string name="option_asb_delete">Delete Set</string>
-
-    <string name="asb_dialog_talisman_title">Talisman</string>
-    <string name="asb_talisman_skill">Skill %d</string>
-    <string name="asb_talisman_skill_1">Skill 1</string>
-    <string name="asb_talisman_skill_2">Skill 2</string>
-
-    <string name="asb_none">(None)</string>
-    <string name="asb_skill_tree">Skill Tree</string>
-    <string name="asb_skill_points_total">Total</string>
-
-    <string name="asb_dialog_title_delete_set">Delete this set?</string>
-    <string name="asb_dialog_title_delete_set_multi">Delete sets?</string>
-    <string name="asb_dialog_title_copy_set">Copy this set?</string>
-    <string name="asb_dialog_title_copy_set_multi">Copy sets?</string>
     <string name="monster_normal_state">Normal State</string>
 
-    <string name="asb_weapon_slots_none">Weapon (No Slots)</string>
-    <string name="asb_weapon_slots_one">Weapon (One Slots)</string>
-    <string name="asb_weapon_slots_two">Weapon (Two Slots)</string>
-    <string name="asb_weapon_slots_three">Weapon (Three Slots)</string>
+    <string name="option_wishlist_add">Create Wishlist</string>
+    <string name="option_wishlist_edit">Edit Wishlist</string>
+    <string name="option_wishlist_delete">Delete Wishlist</string>
+    <string name="option_wishlist_rename">Rename Wishlist</string>
+    <string name="option_wishlist_copy">Copy Wishlist</string>
 
-    <string name="asb_tooltip_weapon">Weapon</string>
-    <string name="asb_tooltip_armor_head">Head</string>
-    <string name="asb_tooltip_armor_body">Body</string>
-    <string name="asb_tooltip_armor_arms">Arms</string>
-    <string name="asb_tooltip_armor_waist">Waist</string>
-    <string name="asb_tooltip_armor_legs">Legs</string>
-    <string name="asb_tooltip_talisman">Talisman</string>
+    <string name="asb_action_select">Select</string>
 
     <!-- Bowgun strings -->
     <string name="siege_mode">Siege Mode</string>
@@ -533,5 +480,40 @@
         <item>Blademaster</item>
         <item>Gunner</item>
     </string-array>
+
+    <string-array name="gender_values">
+        <item>Any</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="hunter_type_filter">
+        <item>Any</item>
+        <item>Blademaster</item>
+        <item>Gunner</item>
+    </string-array>
+
+    <string-array name="slot_filter_values">
+        <item>Any</item>
+        <item>1 Slot</item>
+        <item>2 Slots</item>
+        <item>3 Slots</item>
+    </string-array>
+
+    <string-array name="rarity_values">
+        <item>Any</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string name="title_armor_set_builder">Armor Set Builder</string>
 
 </resources>

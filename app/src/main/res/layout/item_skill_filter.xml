@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="@dimen/margin_medium"
+    android:paddingEnd="@dimen/margin_small"
+    android:paddingTop="@dimen/margin_small"
+    android:paddingBottom="@dimen/margin_small"
+    android:background="?android:attr/selectableItemBackground"
+    android:minHeight="56dp">
+
+    <CheckBox
+        android:id="@+id/checkbox_skill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/accent_color" />
+
+    <TextView
+        android:id="@+id/text_skill_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/margin_small"
+        android:maxLines="1"
+        android:ellipsize="end"
+        style="@style/text_medium"
+        tools:text="Attack" />
+
+    <Spinner
+        android:id="@+id/spinner_points"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="24dp"
+        android:gravity="center_vertical" />
+
+</LinearLayout>

@@ -36,8 +36,8 @@ class WeaponDetailPagerActivity : BasePagerActivity() {
 
         val weaponType = w.wtype!!
 
-        // Set activity title to display weapon type
-        title = AssetLoader.localizeWeaponType(weaponType)
+        // Set activity title to display weapon name
+        title = name
 
         // All weapons have a detail tab
         tabs.addTab(R.string.weapon_detail_tab_detail) {

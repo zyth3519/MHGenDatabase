@@ -36,7 +36,6 @@
     <item name="palico_weapon_detail_fragment" type="id"/>
     <item name="wishlist_data_component_fragment" type="id"/>
     <item name="wishlist_data_detail_fragment" type="id"/>
-    <item name="asb_set_activity" type="id"/>
     <item name="wyporium_trade_detail_fragment" type="id"/>
 
 
@@ -70,6 +69,4 @@
     <item name="material_item_list_fragment" type="id"/>
     <item name="wishlist_list_fragment" type="id"/>
     <item name="wyporium_trade_list_fragment" type="id"/>
-    <item name="asb_skills_list_fragment" type="id"/>
-    <item name="asb_set_list_fragment" type="id"/>
 </resources>

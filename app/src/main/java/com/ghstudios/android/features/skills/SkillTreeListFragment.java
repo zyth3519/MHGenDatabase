@@ -9,107 +9,105 @@ import androidx.fragment.app.ListFragment;
 import androidx.loader.app.LoaderManager.LoaderCallbacks;
 import androidx.loader.content.Loader;
 import androidx.cursoradapter.widget.CursorAdapter;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.cursors.SkillTreeCursor;
-import com.ghstudios.android.features.skills.detail.SkillTreeDetailPagerActivity;
-import com.ghstudios.android.loader.SkillTreeListCursorLoader;
+import com.ghstudios.android.loader.SkillTreeSearchCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
-import com.ghstudios.android.features.armorsetbuilder.detail.ASBDetailPagerActivity;
 
 public class SkillTreeListFragment extends ListFragment implements
-		LoaderCallbacks<Cursor> {
+        LoaderCallbacks<Cursor> {
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    private static final int LOADER_ID = R.id.skill_tree_list_fragment;
+    private EditText searchInput;
+    private String currentQuery = "";
 
-		// Initialize the loader to load the list of runs
-		getLoaderManager().initLoader(R.id.skill_tree_list_fragment, null, this);
-	}
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle args = new Bundle();
+        args.putString("searchTerm", "");
+        getLoaderManager().initLoader(LOADER_ID, args, this);
+    }
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
-							 Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_skilltree_search_list, parent, false);
 
-		View v = inflater.inflate(R.layout.fragment_generic_list, parent, false);
-		//JOE:This list is never empty, so remove empty view to prevent flash
-		View emptyView = v.findViewById(android.R.id.empty);
-		((ViewGroup)emptyView.getParent()).removeView(emptyView);
-		return v;
-	}
+        searchInput = v.findViewById(R.id.skill_search_input);
+        searchInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                String q = s.toString();
+                if (q.equals(currentQuery)) return;
+                currentQuery = q;
+                Bundle args = new Bundle();
+                args.putString("searchTerm", q);
+                getLoaderManager().restartLoader(LOADER_ID, args, SkillTreeListFragment.this);
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
 
-	@Override
-	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		// You only ever load the runs, so assume this is the case
-		return new SkillTreeListCursorLoader(getActivity());
-	}
+        return v;
+    }
 
-	@Override
-	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-		// Create an adapter to point at this cursor
-		if (getListAdapter() == null) {
-			SkillTreeListCursorAdapter adapter = new SkillTreeListCursorAdapter(
-					getActivity(), (SkillTreeCursor) cursor);
-			setListAdapter(adapter);
-		}
-	}
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        String searchTerm = args != null ? args.getString("searchTerm", "") : "";
+        return new SkillTreeSearchCursorLoader(getActivity(), searchTerm);
+    }
 
-	@Override
-	public void onLoaderReset(Loader<Cursor> loader) {
-		// Stop using the cursor (via the adapter)
-		setListAdapter(null);
-	}
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        SkillTreeListCursorAdapter adapter = new SkillTreeListCursorAdapter(
+                getActivity(), (SkillTreeCursor) cursor);
+        setListAdapter(adapter);
+    }
 
-	private class SkillTreeListCursorAdapter extends CursorAdapter {
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        setListAdapter(null);
+    }
 
-		private SkillTreeCursor mSkillTreeCursor;
+    private class SkillTreeListCursorAdapter extends CursorAdapter {
 
-		public SkillTreeListCursorAdapter(Context context,
-				SkillTreeCursor cursor) {
-			super(context, cursor, 0);
-			mSkillTreeCursor = cursor;
-		}
+        private SkillTreeCursor mSkillTreeCursor;
 
-		@Override
-		public View newView(Context context, Cursor cursor, ViewGroup parent) {
-			// Use a layout inflater to get a row view
-			LayoutInflater inflater = (LayoutInflater) context
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			return inflater.inflate(R.layout.fragment_skilltree_listitem,
-					parent, false);
-		}
+        public SkillTreeListCursorAdapter(Context context, SkillTreeCursor cursor) {
+            super(context, cursor, 0);
+            mSkillTreeCursor = cursor;
+        }
 
-		@Override
-		public void bindView(View view, Context context, Cursor cursor) {
-			// Get the skill for the current row
+        @Override
+        public View newView(Context context, Cursor cursor, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            return inflater.inflate(R.layout.fragment_skilltree_listitem, parent, false);
+        }
+
+        @Override
+        public void bindView(View view, Context context, Cursor cursor) {
             final SkillTree skilltree = mSkillTreeCursor.getSkillTree();
             LinearLayout itemLayout = (LinearLayout) view.findViewById(R.id.listitem);
 
-			// Set up the text view
-			TextView skilltreeNameTextView = (TextView) view.findViewById(R.id.item);
-			String cellText = skilltree.getName();
-			skilltreeNameTextView.setText(cellText);
+            TextView skilltreeNameTextView = (TextView) view.findViewById(R.id.item);
+            String cellText = skilltree.getName();
+            skilltreeNameTextView.setText(cellText);
 
-            if (getActivity().getIntent().getBooleanExtra(ASBDetailPagerActivity.EXTRA_FROM_TALISMAN_EDITOR, false)) {
-                itemLayout.setOnClickListener(v -> {
-                    Intent i = getActivity().getIntent();
-                    i.putExtra(SkillTreeDetailPagerActivity.EXTRA_SKILLTREE_ID, skilltree.getId());
-
-                    getActivity().setResult(Activity.RESULT_OK, i);
-                    getActivity().finish();
-                });
-            }
-            else {
-                itemLayout.setOnClickListener(new SkillClickListener(context, skilltree.getId()));
-            }
-		}
-	}
-
+            itemLayout.setOnClickListener(new SkillClickListener(context, skilltree.getId()));
+        }
+    }
 }

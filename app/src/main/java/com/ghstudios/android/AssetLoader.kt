@@ -87,25 +87,38 @@ object AssetLoader {
             = application.getString(R.string.value_rare, localizeRarity(rarity))
 
     /**
-     * Returns a localized human readable weapon name for a weapon type
+     * Returns a localized human readable weapon name for a weapon type.
+     * Uses in-app data locale setting to pick the correct translation.
      */
-    @JvmStatic fun localizeWeaponType(type: String) = ctx.getString(when (type) {
-        Weapon.GREAT_SWORD -> R.string.type_weapon_greatsword
-        Weapon.LONG_SWORD -> R.string.type_weapon_longsword
-        Weapon.SWORD_AND_SHIELD -> R.string.type_weapon_swordandshield
-        Weapon.DUAL_BLADES -> R.string.type_weapon_dualblades
-        Weapon.HAMMER -> R.string.type_weapon_hammer
-        Weapon.HUNTING_HORN -> R.string.type_weapon_huntinghorn
-        Weapon.LANCE -> R.string.type_weapon_lance
-        Weapon.GUNLANCE -> R.string.type_weapon_gunlance
-        Weapon.SWITCH_AXE -> R.string.type_weapon_switchaxe
-        Weapon.CHARGE_BLADE -> R.string.type_weapon_chargeblade
-        Weapon.INSECT_GLAIVE -> R.string.type_weapon_insectglaive
-        Weapon.LIGHT_BOWGUN -> R.string.type_weapon_lightbowgun
-        Weapon.HEAVY_BOWGUN -> R.string.type_weapon_heavybowgun
-        Weapon.BOW -> R.string.type_weapon_bow
-        else -> R.string.type_weapon
-    })
+    @JvmStatic fun localizeWeaponType(type: String): String {
+        val resId = when (type) {
+            Weapon.GREAT_SWORD -> R.string.type_weapon_greatsword
+            Weapon.LONG_SWORD -> R.string.type_weapon_longsword
+            Weapon.SWORD_AND_SHIELD -> R.string.type_weapon_swordandshield
+            Weapon.DUAL_BLADES -> R.string.type_weapon_dualblades
+            Weapon.HAMMER -> R.string.type_weapon_hammer
+            Weapon.HUNTING_HORN -> R.string.type_weapon_huntinghorn
+            Weapon.LANCE -> R.string.type_weapon_lance
+            Weapon.GUNLANCE -> R.string.type_weapon_gunlance
+            Weapon.SWITCH_AXE -> R.string.type_weapon_switchaxe
+            Weapon.CHARGE_BLADE -> R.string.type_weapon_chargeblade
+            Weapon.INSECT_GLAIVE -> R.string.type_weapon_insectglaive
+            Weapon.LIGHT_BOWGUN -> R.string.type_weapon_lightbowgun
+            Weapon.HEAVY_BOWGUN -> R.string.type_weapon_heavybowgun
+            Weapon.BOW -> R.string.type_weapon_bow
+            else -> R.string.type_weapon
+        }
+
+        val locale = AppSettings.dataLocale
+        if (locale == "en" || locale.isBlank()) {
+            return ctx.getString(resId)
+        }
+
+        val config = android.content.res.Configuration(ctx.resources.configuration)
+        config.setLocale(java.util.Locale(locale))
+        val localizedCtx = ctx.createConfigurationContext(config)
+        return localizedCtx.getString(resId)
+    }
 
     /**
      * Returns a localized string that represents the hub type,

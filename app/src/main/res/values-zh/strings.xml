@@ -141,9 +141,9 @@
     <string name="title_locations">地点</string>
     <string name="title_decorations">装饰品</string>
     <string name="title_skills">技能</string>
-    <string name="title_asb">护甲套装构建器</string>
     <string name="title_wishlists">收藏</string>
     <string name="title_talismans">护石</string>
+    <string name="title_armor_set_builder">护甲套装构建器</string>
 
     <string name="drawer_group_other">其他</string>
     <string name="drawer_preferences">设置</string>
@@ -152,6 +152,11 @@
 
     <string name="logo_description">标志</string>
     <!-- Standard Menu Options -->
+    <string name="option_wishlist_add">创建心愿单</string>
+    <string name="option_wishlist_edit">编辑心愿单</string>
+    <string name="option_wishlist_delete">删除心愿单</string>
+    <string name="option_wishlist_rename">重命名心愿单</string>
+    <string name="option_wishlist_copy">复制心愿单</string>
     <string name="option_wishlist_data_add">收藏</string>
     <string name="option_wishlist_data_edit">编辑数量</string>
     <string name="option_wishlist_data_delete">取消收藏</string>
@@ -347,7 +352,6 @@
     <string name="wishlist_quantity_label">数量：</string>
     <string name="wishlist_quantity_hint">数量</string>
     <string name="wishlist_add_title">添加到哪个心愿单？</string>
-    <string name="wishlist_add_set_title">将套装添加到哪个心愿单？</string>
     <string name="wishlist_add_success">已添加到 %s 心愿单</string>
     <string name="wishlist_text_total">总成本</string>
     <string name="wishlist_error_name_required">心愿单名称不能为空</string>
@@ -376,58 +380,6 @@
     <string name="three_slot_jewel" translatable="false">●●●</string>
 
 
-    <!-- Armor Set Builder Stuff !-->
-    <string name="dialog_title_add_asb_set">新套装</string>
-    <string name="dialog_title_edit_asb_set">编辑套装</string>
-    <string name="asb_dialog_name_hint">套装名称</string>
-    <string name="asb_dialog_rank">等级</string>
-    <string name="asb_dialog_hunter_type">猎人类型</string>
-    <string name="asb_context_action_delete">删除</string>
-    <string name="asb_context_action_edit_data">编辑数据</string>
-    <string name="asb_context_action_copy">复制</string>
-
-    <string name="activity_asb">装甲套装构建器</string>
-    <string name="asb_tab_equipment">装备</string>
-    <string name="asb_title_select_armor">选择装甲</string>
-    <string name="asb_title_select_head">选择头部</string>
-    <string name="asb_title_select_body">选择身体</string>
-    <string name="asb_title_select_arms">选择臂部</string>
-    <string name="asb_title_select_waist">选择腰部</string>
-    <string name="asb_title_select_legs">选择腿部</string>
-    <string name="asb_title_armor_all">全部</string>
-
-    <string name="asb_empty_slot">空槽位</string>
-    <string name="asb_no_slots">无槽位</string>
-    <string name="asb_action_select">选择</string>
-    <string name="asb_action_add">添加</string>
-    <string name="asb_action_remove">移除</string>
-    <string name="asb_action_edit">编辑</string>
-    <string name="asb_result_set_deleted">套装已删除</string>
-    <string name="asb_result_talisman_deleted">护符已删除</string>
-
-    <string name="option_asb_set_add">新建套装</string>
-    <string name="option_asb_edit">编辑套装</string>
-    <string name="option_asb_delete">删除套装</string>
-
-    <string name="asb_dialog_talisman_title">护符</string>
-    <string name="asb_talisman_skill">技能 %d</string>
-    <string name="asb_talisman_skill_1">技能 1</string>
-    <string name="asb_talisman_skill_2">技能 2</string>
-
-    <string name="asb_none">(无)</string>
-    <string name="asb_skill_tree">技能树</string>
-    <string name="asb_skill_points_total">总计</string>
-
-    <string name="asb_dialog_title_delete_set">删除此套装？</string>
-    <string name="asb_dialog_title_delete_set_multi">删除套装？</string>
-    <string name="asb_dialog_title_copy_set">复制此套装？</string>
-    <string name="asb_dialog_title_copy_set_multi">复制套装？</string>
-    <string name="monster_normal_state">正常状态</string>
-
-    <string name="asb_weapon_slots_none">武器（无槽位）</string>
-    <string name="asb_weapon_slots_one">武器(1个槽位)</string>
-    <string name="asb_weapon_slots_two">武器(2个槽位)</string>
-    <string name="asb_weapon_slots_three">武器(3个槽位)</string>
 
     <!-- Bowgun strings -->
     <string name="siege_mode">特殊装填</string>
@@ -492,6 +444,39 @@
     <string-array name="hunter_type">
         <item>剑士</item>
         <item>枪手</item>
+    </string-array>
+
+    <string-array name="gender_values">
+        <item>不限</item>
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+
+    <string-array name="hunter_type_filter">
+        <item>不限</item>
+        <item>剑士</item>
+        <item>枪手</item>
+    </string-array>
+
+    <string-array name="slot_filter_values">
+        <item>不限</item>
+        <item>1孔</item>
+        <item>2孔</item>
+        <item>3孔</item>
+    </string-array>
+
+    <string-array name="rarity_values">
+        <item>不限</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
     </string-array>
 
 </resources>

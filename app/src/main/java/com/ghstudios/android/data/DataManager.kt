@@ -86,7 +86,6 @@ class DataManager private constructor(private val mAppContext: Context) {
     private val gatheringDao = GatheringDao(mHelper)
     private val skillDao = SkillDao(mHelper)
 
-    val asbManager = ASBManager(mAppContext, this, mHelper)
     val wishlistManager = WishlistManager(mAppContext, this, mHelper)
 
 
@@ -94,7 +93,7 @@ class DataManager private constructor(private val mAppContext: Context) {
      * Returns a map of supported language codes.
      */
     fun getLanguages() = listOf(
-        "en", "es", "fr", "de", "it", "zh"
+        "en", "zh"
     )
 
     /********************************* ARMOR QUERIES  */

@@ -27,7 +27,6 @@ import com.ghstudios.android.features.meta.AboutActivity;
 import com.ghstudios.android.features.monsters.list.MonsterListPagerActivity;
 import com.ghstudios.android.features.meta.PreferencesActivity;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListPagerActivity;
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity;
 import com.ghstudios.android.features.combining.CombiningListActivity;
 import com.ghstudios.android.features.decorations.list.DecorationListActivity;
@@ -36,6 +35,7 @@ import com.ghstudios.android.features.locations.LocationListActivity;
 import com.ghstudios.android.features.palicos.PalicoPagerActivity;
 import com.ghstudios.android.features.quests.QuestListPagerActivity;
 import com.ghstudios.android.features.skills.SkillTreeListActivity;
+import com.ghstudios.android.features.armorsetbuilder.ArmorSetBuilderActivity;
 import com.ghstudios.android.features.search.UniversalSearchActivity;
 import com.ghstudios.android.features.weapons.WeaponSelectionListActivity;
 import com.ghstudios.android.features.wishlist.list.WishlistListActivity;
@@ -211,7 +211,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
         } else if (itemId == MenuSection.SKILL_TREES) {
             intent = new Intent(ctx, SkillTreeListActivity.class);
         } else if (itemId == MenuSection.ARMOR_SET_BUILDER) {
-            intent = new Intent(ctx, ASBSetListPagerActivity.class);
+            intent = new Intent(ctx, ArmorSetBuilderActivity.class);
         } else if (itemId == MenuSection.WISH_LISTS) {
             intent = new Intent(ctx, WishlistListActivity.class);
         } else {

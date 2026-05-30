@@ -51,9 +51,9 @@
             android:title="@string/title_skills" />
 
         <item
-            android:id="@+id/nav_asb"
-            android:icon="@drawable/drawer_asb"
-            android:title="@string/title_asb" />
+            android:id="@+id/nav_armor_builder"
+            android:icon="@drawable/drawer_armor"
+            android:title="@string/title_armor_set_builder" />
 
         <item
             android:id="@+id/nav_wishlists"

@@ -177,27 +177,12 @@
                 android:value="com.ghstudios.android.features.wishlist.list.WishlistListActivity" />
         </activity>
 
-        <!-- ARMOR SET BUILDER ACTIVITY -->
+
+        <!-- ARMOR SET BUILDER SECTION -->
         <activity
-            android:name="com.ghstudios.android.features.armorsetbuilder.list.ASBSetListPagerActivity"
+            android:name="com.ghstudios.android.features.armorsetbuilder.ArmorSetBuilderActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ghstudios.android.features.armorsetbuilder.detail.ASBDetailPagerActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.features.armorsetbuilder.list.ASBSetListPagerActivity" />
-        </activity>
-        <activity
-            android:name="com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name="com.ghstudios.android.features.armorsetbuilder.talismans.TalismanSelectActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
 
         <!-- WYPORIUM TRADE SECTION -->
         <activity

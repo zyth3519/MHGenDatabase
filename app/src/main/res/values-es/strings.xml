@@ -135,7 +135,6 @@
     <string name="title_locations">Ubicaciones</string>
     <string name="title_decorations">Adorno</string>
     <string name="title_skills">Habilidades</string>
-    <string name="title_asb">Constructor de Sets</string>
     <string name="title_wishlists">Lista de Deseos</string>
     <string name="drawer_group_other">Otros</string>
     <string name="drawer_preferences">Opciones</string>
@@ -340,7 +339,6 @@
     <string name="wishlist_quantity_label">Cantidad:</string>
     <string name="wishlist_quantity_hint">Cantidad</string>
     <string name="wishlist_add_title">¿Añadir a cúal lista?</string>
-    <string name="wishlist_add_set_title">¿Añadir set de armadura a cúal lista?</string>
     <string name="wishlist_add_success">Añadido a la lista %s</string>
     <string name="wishlist_text_total">Costo total</string>
     <string name="wishlist_error_name_required">Se requiere un nombre para la lista.</string>
@@ -349,57 +347,8 @@
     <string name="wishlist_error_unknown">Error inesperado</string>
     <string name="wishlist_tab_wishlist">Lista de Deseos</string>
     <string name="wishlist_tab_materials">Materiales</string>
-
-    <!-- Armor Set Builder Stuff !-->
     <string name="title_armor_sets">Sets de Armaduras</string>
 
-    <string name="dialog_title_add_asb_set">Nuevo Set</string>
-    <string name="dialog_title_edit_asb_set">Editar Set</string>
-    <string name="asb_dialog_name_hint">Nombre del Set</string>
-    <string name="asb_dialog_rank">Rango</string>
-    <string name="asb_dialog_hunter_type">Tipo de Cazador</string>
-    <string name="asb_context_action_delete">Borrar</string>
-    <string name="asb_context_action_edit_data">Editar Información</string>
-    <string name="asb_context_action_copy">Copiar</string>
-
-    <string name="activity_asb">Constructor de Sets</string>
-    <string name="asb_tab_equipment">Equipo</string>
-    <string name="asb_title_select_armor">Elegir Armadura</string>
-    <string name="asb_title_select_head">Elegir Cabeza</string>
-    <string name="asb_title_select_body">Elegir Pecho</string>
-    <string name="asb_title_select_arms">Elegir Brazos</string>
-    <string name="asb_title_select_waist">Elejir Cintura</string>
-    <string name="asb_title_select_legs">Elegir Piernas</string>
-
-    <string name="asb_empty_slot">Espacio vacío</string>
-    <string name="asb_no_slots">Sin espacios</string>
-    <string name="asb_action_select">Elegir</string>
-
-    <string name="asb_action_add">Añadir</string>
-    <string name="asb_action_remove">Quitar</string>
-    <string name="asb_action_edit">Editar</string>
-
-    <string name="option_asb_set_add">Nuevo Set</string>
-
-    <string name="asb_dialog_talisman_title">Amuleto</string>
-    <string name="asb_talisman_skill">Habilidad %d</string>
-    <string name="asb_talisman_skill_1">Habilidad 1</string>
-    <string name="asb_talisman_skill_2">Habilidad 2</string>
-
-    <string name="asb_none">(Ninguna)</string>
-    <string name="asb_skill_tree">Árbol de Habilidad</string>
-    <string name="asb_skill_points_total">Total</string>
-
-    <string name="asb_dialog_title_delete_set">¿Borrar este set?</string>
-    <string name="asb_dialog_title_delete_set_multi">¿Borrar sets?</string>
-    <string name="asb_dialog_title_copy_set">¿Copiar este set?</string>
-    <string name="asb_dialog_title_copy_set_multi">¿Copiar sets?</string>
-    <string name="monster_normal_state">Estado Normal</string>
-
-    <string name="asb_weapon_slots_none">Arma (Sin Espacios)</string>
-    <string name="asb_weapon_slots_one">Arma (Un Espacio)</string>
-    <string name="asb_weapon_slots_two">Arma (Dos Espacios)</string>
-    <string name="asb_weapon_slots_three">Arma (Tres Espacios)</string>
 
     <!-- Bowgun strings -->
     <string name="siege_mode">Disparo Agachado</string>
@@ -466,13 +415,6 @@
         <item>Artillero</item>
     </string-array>
 
-    <string name="asb_tooltip_weapon">Arma</string>
-    <string name="asb_tooltip_armor_head">Cabeza</string>
-    <string name="asb_tooltip_armor_body">Pecho</string>
-    <string name="asb_tooltip_armor_arms">Brazos</string>
-    <string name="asb_tooltip_armor_waist">Cintura</string>
-    <string name="asb_tooltip_armor_legs">Piernas</string>
-    <string name="asb_tooltip_talisman">Amuleto</string>
 
     <string name="monster_tooltip_damage_impact">Impacto</string>
     <string name="monster_tooltip_damage_fire">Fuego</string>

@@ -9,7 +9,7 @@ import java.util.*
 /**
  * A list of language codes available for existing app translations
  */
-val appLanguages = listOf("en", "de", "es", "zh")
+val appLanguages = listOf("en", "zh")
 
 /** A list of all possible supported languages (across all sources)
  * mapping code to name.
